@@ -1,0 +1,32 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node .",
+    "build": "tsc",
+    "dev:build": "tsc --watch",
+    "dev:start": "nodemon dist/index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-core": "^3.5.0",
+    "apollo-server-express": "^3.5.0",
+    "class-validator": "^0.13.2",
+    "express": "^4.17.2",
+    "google-auth-library": "^7.11.0",
+    "graphql": "^16.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.0.2",
+    "type-graphql": "^1.1.1",
+    "typeorm": "^0.2.41"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/http-server": "^0.12.1",
+    "@types/jsonwebtoken": "^8.5.6",
+    "nodemon": "^2.0.15",
+    "typescript": "^4.5.4"
+  }
+}
