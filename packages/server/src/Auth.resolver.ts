@@ -25,7 +25,7 @@ class GoogleAuthPayload {
 }
 
 @Resolver()
-class Auth {
+class AuthResolver {
   @Query(() => User, { nullable: true })
   me(@Ctx() { user }: Context) {
     return user;
@@ -45,4 +45,4 @@ class Auth {
   }
 }
 
-export default Auth;
+export default AuthResolver;
