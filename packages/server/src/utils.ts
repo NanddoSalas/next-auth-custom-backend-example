@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import jwt from 'jsonwebtoken';
 import oAuth2Client from './oAuth2Client';
 import User from './User.entity';
@@ -36,4 +37,28 @@ export const createAccesToken = async (user: User) => {
     payload,
     process.env.SECRET || 'gCtvpTciwl/nPSvvWQrqn+kIXB7A/SpvRXX5CtfJNDI=',
   );
+};
+
+export const getUser = async (req: Request) => {
+  const bearerHeader = req.headers.authorization;
+
+  if (bearerHeader) {
+    const [, accesToken] = bearerHeader.split(' ');
+
+    try {
+      const payload = jwt.verify(
+        accesToken,
+        process.env.SECRET || 'gCtvpTciwl/nPSvvWQrqn+kIXB7A/SpvRXX5CtfJNDI=',
+      );
+
+      const user = await User.findOne({
+        where: { id: (payload as any).userId },
+      });
+
+      if (user?.tokenVersion === (payload as any).tokenVersion) return user;
+    } catch (err) {
+      return undefined;
+    }
+  }
+  return undefined;
 };

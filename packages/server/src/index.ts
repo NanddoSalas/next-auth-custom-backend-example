@@ -1,11 +1,12 @@
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
-import { ApolloServer } from 'apollo-server-express';
+import { ApolloServer, ExpressContext } from 'apollo-server-express';
 import express from 'express';
 import http from 'http';
 import { buildSchema } from 'type-graphql';
 import { createConnection } from 'typeorm';
 import Auth from './Auth.resolver';
 import User from './User.entity';
+import { getUser } from './utils';
 
 const main = async () => {
   await createConnection({
@@ -23,8 +24,15 @@ const main = async () => {
     resolvers: [Auth],
   });
 
+  const context = async ({ req, res }: ExpressContext) => {
+    const user = await getUser(req);
+
+    return { req, res, user };
+  };
+
   const server = new ApolloServer({
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    context,
     schema,
   });
 

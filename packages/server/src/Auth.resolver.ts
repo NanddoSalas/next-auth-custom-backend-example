@@ -1,11 +1,15 @@
 import {
   Arg,
+  Ctx,
   Field,
   InputType,
   Mutation,
   ObjectType,
+  Query,
   Resolver,
 } from 'type-graphql';
+import { Context } from './types';
+import User from './User.entity';
 import { authenticateWithGoogle, createAccesToken } from './utils';
 
 @InputType()
@@ -22,6 +26,11 @@ class GoogleAuthPayload {
 
 @Resolver()
 class Auth {
+  @Query(() => User, { nullable: true })
+  me(@Ctx() { user }: Context) {
+    return user;
+  }
+
   @Mutation(() => GoogleAuthPayload)
   async googleAuth(
     @Arg('input') { idToken }: GoogleAuthInput,
