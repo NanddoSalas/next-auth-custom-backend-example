@@ -19,7 +19,6 @@ export const authenticateWithGoogle = async (idToken: string) => {
     if (user) return user;
 
     return await User.create({
-      name: payload.name,
       googleId: payload.sub,
     }).save();
   } catch (error) {

@@ -8,12 +8,14 @@ class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Field()
-  @Column()
-  name: string;
-
   @Column({ nullable: true })
   googleId?: string;
+
+  @Column({ nullable: true })
+  twitterId?: string;
+
+  @Column({ nullable: true })
+  githubId?: string;
 
   @Column({ default: 0 })
   tokenVersion: number;
