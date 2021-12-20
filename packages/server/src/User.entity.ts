@@ -8,6 +8,18 @@ class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Field()
+  @Column()
+  name: string;
+
+  @Field()
+  @Column({ unique: true })
+  email: string;
+
+  @Field()
+  @Column()
+  image: string;
+
   @Column({ nullable: true })
   googleId?: string;
 
