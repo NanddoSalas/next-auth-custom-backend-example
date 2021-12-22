@@ -4,6 +4,7 @@ import express from 'express';
 import http from 'http';
 import { buildSchema } from 'type-graphql';
 import { createConnection } from 'typeorm';
+import AdapterResolver from './Adapter.resolver';
 import AuthResolver from './Auth.resolver';
 import PostResolver from './Post.resolver';
 import User from './User.entity';
@@ -22,7 +23,7 @@ const main = async () => {
   const httpServer = http.createServer(app);
 
   const schema = await buildSchema({
-    resolvers: [AuthResolver, PostResolver],
+    resolvers: [AuthResolver, PostResolver, AdapterResolver],
   });
 
   const context = async ({ req, res }: ExpressContext) => {
