@@ -29,8 +29,16 @@ class User extends BaseEntity {
   @Column({ nullable: true })
   githubId?: string;
 
-  @Column({ default: 0 })
-  tokenVersion: number;
+  @Field(() => [String])
+  connectedProviders(): string[] {
+    const providers: string[] = [];
+
+    if (this.googleId) providers.push('google');
+    if (this.twitterId) providers.push('twitter');
+    if (this.githubId) providers.push('github');
+
+    return providers;
+  }
 }
 
 export default User;
