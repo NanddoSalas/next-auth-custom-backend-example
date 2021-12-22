@@ -26,18 +26,6 @@ export const authenticateWithGoogle = async (idToken: string) => {
   }
 };
 
-export const createAccesToken = async (user: User) => {
-  const payload = {
-    userId: user.id,
-    tokenVersion: user.tokenVersion,
-  };
-
-  return jwt.sign(
-    payload,
-    process.env.SECRET || 'gCtvpTciwl/nPSvvWQrqn+kIXB7A/SpvRXX5CtfJNDI=',
-  );
-};
-
 export const getUser = async (req: Request) => {
   const bearerHeader = req.headers.authorization;
 
@@ -50,11 +38,9 @@ export const getUser = async (req: Request) => {
         process.env.SECRET || 'gCtvpTciwl/nPSvvWQrqn+kIXB7A/SpvRXX5CtfJNDI=',
       );
 
-      const user = await User.findOne({
-        where: { id: (payload as any).userId },
-      });
+      const user = await User.findOne((payload as any).userId);
 
-      if (user?.tokenVersion === (payload as any).tokenVersion) return user;
+      return user;
     } catch (err) {
       return undefined;
     }
