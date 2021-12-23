@@ -1,0 +1,70 @@
+mutation CreateUser($image: String!, $email: String!, $name: String!) {
+  user: createUser(image: $image, email: $email, name: $name) {
+    id
+    name
+    email
+    image
+  }
+}
+
+query GetUser($getUserId: String!) {
+  user: getUser(id: $getUserId) {
+    id
+    name
+    email
+    image
+  }
+}
+
+query GetUserByEmail($email: String!) {
+  user: getUserByEmail(email: $email) {
+    id
+    name
+    email
+    image
+  }
+}
+
+query GetUserByAccount($providerAccountId: String!) {
+  user: getUserByAccount(providerAccountId: $providerAccountId) {
+    id
+    name
+    email
+    image
+  }
+}
+
+mutation LinkAccount(
+  $userId: String!
+  $providerAccountId: String!
+  $provider: String!
+) {
+  linkAccount(
+    userId: $userId
+    providerAccountId: $providerAccountId
+    provider: $provider
+  )
+}
+
+query Posts($limit: Int, $cursor: Int) {
+  posts(limit: $limit, cursor: $cursor) {
+    id
+    title
+    body
+    createdAt
+    author
+    avatar
+  }
+}
+
+query Me {
+  me {
+    connectedProviders
+  }
+}
+
+mutation UnlinkProvider($provider: String!) {
+  unlinkProvider(provider: $provider) {
+    id
+  }
+}
