@@ -1,9 +1,15 @@
 overwrite: true
 schema: 'http://localhost:4000/graphql'
 generates:
-  src/adapter/sdk.ts:
-    documents: 'src/adapter/operation.graphql'
+  src/graphql/sdk.ts:
+    documents: 'src/graphql/operation.graphql'
     plugins:
       - typescript
       - typescript-operations
       - typescript-graphql-request
+  src/graphql/types-and-hooks.tsx:
+    documents: 'src/graphql/operation.graphql'
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
