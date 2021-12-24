@@ -1,5 +1,6 @@
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import { ApolloServer, ExpressContext } from 'apollo-server-express';
+import dotenv from 'dotenv';
 import express from 'express';
 import http from 'http';
 import { buildSchema } from 'type-graphql';
@@ -9,6 +10,8 @@ import AuthResolver from './Auth.resolver';
 import PostResolver from './Post.resolver';
 import User from './User.entity';
 import { getUser } from './utils';
+
+dotenv.config({ path: `${__dirname}/.env.local` });
 
 const main = async () => {
   await createConnection({
