@@ -1,8 +1,10 @@
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
+import { AdapterOnly } from './decorators';
 import User from './User.entity';
 
 @Resolver()
 class AdapterResolver {
+  @AdapterOnly()
   @Mutation(() => User)
   async createUser(
     @Arg('name') name: string,
@@ -20,16 +22,19 @@ class AdapterResolver {
     return user;
   }
 
+  @AdapterOnly()
   @Query(() => User, { nullable: true })
   async getUser(@Arg('id') id: string): Promise<User | undefined> {
     return User.findOne(id);
   }
 
+  @AdapterOnly()
   @Query(() => User, { nullable: true })
   async getUserByEmail(@Arg('email') email: string): Promise<User | undefined> {
     return User.findOne({ where: { email } });
   }
 
+  @AdapterOnly()
   @Query(() => User, { nullable: true })
   async getUserByAccount(
     @Arg('providerAccountId') providerAccountId: string,
@@ -43,6 +48,7 @@ class AdapterResolver {
     });
   }
 
+  @AdapterOnly()
   @Mutation(() => Boolean)
   async linkAccount(
     @Arg('provider') provider: string,
