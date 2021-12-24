@@ -1,6 +1,9 @@
 {
   "name": "next-auth-custom-backend-example",
   "private": true,
+  "scripts": {
+    "dev": "lerna run dev --stream"
+  },
   "workspaces": [
     "packages/*"
   ],
