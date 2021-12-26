@@ -2,7 +2,7 @@
 
 This is and example site to demostrate how to use [NextAuth.js](https://next-auth.js.org) with a separated backend from next js using the [Custom Adapter Aproach.](https://next-auth.js.org)
 
-[Try Demo](https://next-auth-custom-backend.vercel.com)
+[Try Demo](https://next-auth-custom-backend.vercel.app)
 
 # Installation
 
