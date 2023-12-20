@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { FaGithub, FaGoogle, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaTwitter } from 'react-icons/fa';
 import ClientOnly from '../components/ClientOnly';
 import Header from '../components/Header';
 import {
@@ -79,7 +79,7 @@ const Account = () => {
           </FormControl>
 
           <VStack spacing={8}>
-            <Button
+            {/* <Button
               w="full"
               colorScheme="red"
               leftIcon={<FaGoogle />}
@@ -90,7 +90,7 @@ const Account = () => {
               onClick={() => handleClick('google')}
             >
               {providers?.includes('google') ? 'Disconnect' : 'Connect'}
-            </Button>
+            </Button> */}
 
             <Button
               w="full"
