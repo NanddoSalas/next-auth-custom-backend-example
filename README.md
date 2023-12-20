@@ -4,6 +4,12 @@ This is and example site to demostrate how to use [NextAuth.js](https://next-aut
 
 [Try Demo](https://next-auth-custom-backend.vercel.app)
 
+# Prerequisites
+
+* node v18.18.2
+* Twitter OAuth credentials [get them here](https://developer.twitter.com/en/apps)
+* GitHub OAuth credentials [get them here](https://github.com/settings/apps)
+
 # Installation
 
 ## 1. Get the code into your local machine and install all dependencies
