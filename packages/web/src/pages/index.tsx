@@ -24,7 +24,7 @@ const IndexPage = () => (
             </Link>{' '}
             with a separated backend from next js using the{' '}
             <Link
-              href="https://next-auth.js.org/adapters/overview"
+              href="https://authjs.dev/guides/adapters/creating-a-database-adapter"
               color="blue.500"
               isExternal
             >
