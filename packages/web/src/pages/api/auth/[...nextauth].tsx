@@ -68,16 +68,12 @@ export default NextAuth({
   },
 
   adapter: {
-    createUser: async ({
-      name,
-      email,
-      image,
-    }: {
-      name: string;
-      email: string;
-      image: string;
-    }) => {
-      const { user } = await sdk.CreateUser({ name, email, image });
+    createUser: async ({ name, email, image }) => {
+      const { user } = await sdk.CreateUser({
+        name: name || email,
+        email,
+        image: image || 'https://next-auth.js.org/img/logo/logo-sm.png',
+      });
 
       return { emailVerified: null, ...user };
     },
